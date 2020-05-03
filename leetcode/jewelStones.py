@@ -19,8 +19,6 @@ The characters in J are distinct.
 
 
 def numJewelsInStones(J : str , S:str ) -> int:
-    numJ = len(J)
-    nums = len(S)
     ans = 0
     # brute force - travese over s and match if it is a jevel or not - O(len(s))
     # can be count array 
@@ -28,7 +26,8 @@ def numJewelsInStones(J : str , S:str ) -> int:
         if (letter in J):
             ans += 1
     return ans
-    # create a count array  - better O(n)
+
+    # create a count array  - better O(n) depends the complexity of letter in dic.keys
     dic ={}
     count =0
     for letter in S:
