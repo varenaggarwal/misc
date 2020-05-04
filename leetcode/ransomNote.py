@@ -23,6 +23,19 @@ def canConstruct(ransomNote: str, magazine: str) -> bool:
         else:
             return False
     return ans
+    # another - Counter from collections
+    from collections import Counter
+    c1 = Counter(s1)
+    c2 = Counter(s2)
+    ans = False
+    for i in c1.keys():
+        if i in c2.keys():
+            if c1[i]<= c2[i]:
+                ans = True
+            else:
+                return False
+        else: return False
+    return ans
     ## another way to do it is 
     for i in set(ransomNote):
         if ransomNote.count(i) > magazine.count(i):
