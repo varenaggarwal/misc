@@ -23,5 +23,10 @@ def canConstruct(ransomNote: str, magazine: str) -> bool:
         else:
             return False
     return ans
+    ## another way to do it is 
+    for i in set(ransomNote):
+        if ransomNote.count(i) > magazine.count(i):
+            return False
+        return True
 
 print(canConstruct("fihjjjjei" , "hjibagacbhadfaefdjaeaebgi"))
