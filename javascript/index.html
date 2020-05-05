@@ -17,16 +17,22 @@
 </head>
 <body>
     <button id="btnCounter">+</button>
+    <input></input>
     <script>
-        
-        // get the button element
-        const element = document.querySelector("#btnCounter ") // dom here then selecter we have # id or . class              
-        console.log(element);
-        // Listen to click 
-        // Take a number which start from 0
         let counter = 0;
         //Every click increment a number 
-        counter += 1;
+        //function to increment a number
+        function counterIncrement(){
+            counter += 1;
+            console.log(counter)
+        }
+        // get the button element
+        const element = document.querySelector("#btnCounter ") // dom here then selecter we have # id or . class              
+
+        // Listen to click 
+        element.addEventListener("click" , counterIncrement, false); // callback function
+        // Take a number which start from 0
+        
     </script>
 </body>
 </html>
