@@ -6,6 +6,7 @@
 | Day 1  | first bad version |
 | Day 2  | Jewel and stones  |
 | Day 3  | Ransome Note      |
+| Day 4  | number Compliment |
 
 ## 30 Day Chalenge
 |  # | Problem       |
