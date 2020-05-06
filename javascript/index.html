@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
     <title>Personal Expense</title>
     <style>
         body{
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
@@ -16,21 +16,37 @@
     
 </head>
 <body>
-    <button id="btnCounter">+</button>
-    <input></input>
+    <h1 id = "headingTotal"></h1>
+    <input id ="inputAmount" type = "text"></input>
+    <button id="btnAddExpense">+</button>
     <script>
-        let counter = 0;
-        //Every click increment a number 
-        //function to increment a number
-        function counterIncrement(){
-            counter += 1;
-            console.log(counter)
-        }
+        // get the headong element
+        const headingEl = document.querySelector("#headingTotal");
+
+        // init value of expense at 0
+        let totalExpense=0;
+
+        // set the heading element to total expense
+        headingEl.textContent = totalExpense;
+
+        // on ButtonClick add inputappunt to total Expense
+        function addExpenseTotal() {
+            // read value from inputAmount
+            const inputElement = document.querySelector("#inputAmount");
+            // convert it to number
+            const textAmount = inputElement.value;
+            const expense = parseInt(textAmount);
+            totalExpense  += expense;
+            // set heading element to total expense
+            headingEl.textContent = totalExpense;
+            }
+             
+             // add thet value to totalExpense
         // get the button element
-        const element = document.querySelector("#btnCounter ") // dom here then selecter we have # id or . class              
+        const element = document.querySelector("#btnAddExpense ") // dom here then selecter we have # id or . class              
 
         // Listen to click 
-        element.addEventListener("click" , counterIncrement, false); // callback function
+        element.addEventListener("click" , addExpenseTotal, false); // callback function
         // Take a number which start from 0
         
     </script>
