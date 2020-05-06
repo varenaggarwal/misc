@@ -8,6 +8,7 @@
 | Day 3  | Ransome Note      |
 | Day 4  | number Compliment |
 | Day 5  | first Unique Char |
+| Day 6  | majority Element  |
 
 ## 30 Day Chalenge
 |  # | Problem       |
