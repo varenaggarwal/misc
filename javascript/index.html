@@ -17,11 +17,18 @@
 </head>
 <body>
     <h1 id = "headingTotal"></h1>
-    <input id ="inputAmount" type = "text"></input>
+    <input id ="inputAmount" type = "number">
+    <input id ="inputDescription" type="text">
     <button id="btnAddExpense">+</button>
     <script>
         // get the headong element
         const headingEl = document.querySelector("#headingTotal");
+
+        //get the desc to refrence element
+        const inputDescEl= document.querySelector("#inputDescription");
+
+        // get the amount element
+        const inputElement = document.querySelector("#inputAmount");
 
         // init value of expense at 0
         let totalExpense=0;
@@ -29,13 +36,26 @@
         // set the heading element to total expense
         headingEl.textContent = totalExpense;
 
-        // on ButtonClick add inputappunt to total Expense
+        // allexpenses at one place
+        const allexpenses = [];
+
+
+        // on ButtonClick add input to total Expense
         function addExpenseTotal() {
-            // read value from inputAmount
-            const inputElement = document.querySelector("#inputAmount");
+            const expenseItem ={};
+
+            // read the input desc
+            const textDesc = inputDescEl.value;
+
             // convert it to number
             const textAmount = inputElement.value;
             const expense = parseInt(textAmount);
+
+            //put it in object
+            expenseItem.desc  = testDesc;
+            
+
+            console.log({textDesc , expense});
             totalExpense  += expense;
             // set heading element to total expense
             headingEl.textContent = totalExpense;
