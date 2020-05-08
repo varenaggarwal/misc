@@ -39,9 +39,10 @@
         // allexpenses at one place
         const allexpenses = [];
 
-
         // on ButtonClick add input to total Expense
         function addExpenseTotal() {
+            
+            // create a object
             const expenseItem ={};
 
             // read the input desc
@@ -52,10 +53,15 @@
             const expense = parseInt(textAmount);
 
             //put it in object
-            expenseItem.desc  = testDesc;
-            
+            expenseItem.desc  = textDesc;
+            expenseItem.amount = expense;
 
-            console.log({textDesc , expense});
+            //put the object in the array
+            allexpenses.push(expenseItem);
+ 
+            console.clear();
+            console.table(allexpenses);
+            // add to total expense
             totalExpense  += expense;
             // set heading element to total expense
             headingEl.textContent = totalExpense;
