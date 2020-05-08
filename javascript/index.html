@@ -20,6 +20,7 @@
     <input id ="inputAmount" type = "number">
     <input id ="inputDescription" type="text">
     <button id="btnAddExpense">+</button>
+    <div id="expenseTable"></div>
     <script>
         // get the headong element
         const headingEl = document.querySelector("#headingTotal");
@@ -29,6 +30,9 @@
 
         // get the amount element
         const inputElement = document.querySelector("#inputAmount");
+
+        //get expenseTable div
+        const expenseTableEl = document.querySelector("#expenseTable")
 
         // init value of expense at 0
         let totalExpense=0;
@@ -63,8 +67,24 @@
             console.table(allexpenses);
             // add to total expense
             totalExpense  += expense;
+            const sometext = `Total : ${totalExpense}`; //templating
             // set heading element to total expense
-            headingEl.textContent = totalExpense;
+            headingEl.textContent = sometext;   
+            
+            // show table here
+            const data1 = allexpenses[0];
+            const data2 = allexpenses[1];
+            
+            const data1Text = `${data1.amount} :: ${data2.desc}`;
+            const data2Text = `${data2.amount} :: ${data2.desc}`;
+            
+            // templating 
+            const tableText = `
+            <div>${data1Text}</div>
+            <div>${data2Text}</div>
+            `
+            expenseTableEl.innerHTML = tableText;
+
             }
              
              // add thet value to totalExpense
