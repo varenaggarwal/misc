@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+    />
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"
+    ></script>
+	<title>Budgeteer</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Budgeteer</span>
+    </nav>
+    <div class="container-fluid bg-light" style="min-height: 100vh">
+        <div class="container">
+            <h1 id = "headingTotal"></h1>
+            <div class = "container">
+                <div class="jumbotron mt-4">
+					<div class="input-group mb-3">
+                        <input
+                            id ="inputAmount" 
+							type="number"
+							class="form-control"
+							placeholder="Amount spent"
+							aria-label="Amount spent"
+							aria-describedby="spent in rupee"
+						/>
+						<div class="input-group-append">
+							<span class="input-group-text" id="spent in rupee">₹</span>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="spent at">@</span>
+						</div>
+                        <input
+                            id ="inputDescription"
+							type="text"
+							class="form-control"
+							placeholder="spent On"
+							aria-label="spent On"
+							aria-describedby="spent at"
+						/>
+						<div class="input-group-append">
+							<button id="btnAddExpense" class="btn btn-outline-primary" type="button" id="button-addon2">Add</button>
+						</div>
+					</div>
+                </div>
+                <div>
+                    <ul class="list-group" id="expenseTable">
+                    </ul>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // get the headong element
+        const headingEl = document.querySelector("#headingTotal");
+
+        //get the desc to refrence element
+        const inputDescEl= document.querySelector("#inputDescription");
+
+        // get the amount element
+        const inputElement = document.querySelector("#inputAmount");
+
+        //get expenseTable div
+        const expenseTableEl = document.querySelector("#expenseTable")
+
+        // init value of expense at 0
+        let totalExpense=0;
+
+        // set the heading element to total expense
+        headingEl.textContent = totalExpense;
+
+        // allexpenses at one place
+        const allexpenses = [];
+
+        // on ButtonClick add input to total Expense
+        function addExpenseTotal() {
+            
+            // create a object
+            const expenseItem ={};
+
+            // read the input desc
+            const textDesc = inputDescEl.value;
+
+            // convert it to number
+            const textAmount = inputElement.value;
+            const expense = parseInt(textAmount);
+
+            //put it in object
+            expenseItem.desc  = textDesc;
+            expenseItem.amount = expense;
+
+            //put the object in the array
+            allexpenses.push(expenseItem);
+ 
+            console.clear();
+            console.table(allexpenses);
+            // add to total expense
+            totalExpense  += expense;
+            const sometext = `Total : ${totalExpense}`; //templating
+            // set heading element to total expense
+            headingEl.textContent = sometext;   
+            
+            // show table here
+            // const data1 = allexpenses[0];
+            // const data2 = allexpenses[1];
+            
+            // const data1Text = `${data1.amount} :: ${data2.desc}`;
+            // const data2Text = `${data2.amount} :: ${data2.desc}`;
+            
+            // // templating 
+            // const tableText = `
+            // <div>${data1Text}</div>
+            // <div>${data2Text}</div>
+            // `
+
+            const allexpensesHTML = allexpenses.map(expense => createList(expense)).join("");
+            console.log(allexpensesHTML);
+            expenseTableEl.innerHTML = allexpensesHTML;
+
+        }
+         
+        // get the button element
+        const element = document.querySelector("#btnAddExpense ") // dom here then selecter we have # id or . class              
+
+        // Listen to click 
+        element.addEventListener("click" , addExpenseTotal, false); // callback function
+        // Take a number which start from 0
+        
+        // View Layer
+        function createList({desc , amount}){
+            return `
+                <li class="list-group-item d-flex justify-content-between">
+			        <div class="d-flex flex-column">
+			        	${desc}
+			        	<small class="text-muted">March 11, 2019</small>
+			        </div>
+			        <div>
+			        	<span class="px-5">
+			        		${amount} 
+			        	</span>
+			        	<button type="button" class="btn btn-outline-danger btn-sm">
+			        		<i class="fas fa-trash-alt"></i>
+			        	</button>
+			        </div>
+			    </li>
+            `;
+        }
+
+    </script>
+</body>
+</html>
