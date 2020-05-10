@@ -103,6 +103,7 @@
             //put it in object
             expenseItem.desc  = textDesc;
             expenseItem.amount = expense;
+            expenseItem.moment = new Date;
 
             //put the object in the array
             allexpenses.push(expenseItem);
@@ -139,15 +140,22 @@
 
         // Listen to click 
         element.addEventListener("click" , addExpenseTotal, false); // callback function
-        // Take a number which start from 0
         
+        // Controller functions
+        function getDateString(moment){
+            return moment.toLocaleDateString('en-US' ,{ 
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+        }
         // View Layer
-        function createList({desc , amount}){
+        function createList({desc , amount , moment}){
             return `
                 <li class="list-group-item d-flex justify-content-between">
 			        <div class="d-flex flex-column">
 			        	${desc}
-			        	<small class="text-muted">March 11, 2019</small>
+			        	<small class="text-muted">${getDateString(moment)}</small>
 			        </div>
 			        <div>
 			        	<span class="px-5">
