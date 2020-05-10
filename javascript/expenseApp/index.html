@@ -134,13 +134,21 @@
             expenseTableEl.innerHTML = allexpensesHTML;
 
         }
+
+        function removeExpenseTotal() {
+            allexpenses.pop();
+            const allexpensesHTML = allexpenses.map(expense => createList(expense)).join("");
+            console.log(allexpensesHTML);
+            expenseTableEl.innerHTML = allexpensesHTML;
+
+        }
          
         // get the button element
         const element = document.querySelector("#btnAddExpense ") // dom here then selecter we have # id or . class              
 
         // Listen to click 
         element.addEventListener("click" , addExpenseTotal, false); // callback function
-        
+
         // Controller functions
         function getDateString(moment){
             return moment.toLocaleDateString('en-US' ,{ 
