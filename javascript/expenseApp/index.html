@@ -21,10 +21,10 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Budgeteer</span>
+        <span class="navbar-brand mb-0 h1" id = "headingTotal">Total :</span>
     </nav>
     <div class="container-fluid bg-light" style="min-height: 100vh">
         <div class="container">
-            <h1 id = "headingTotal"></h1>
             <div class = "container">
                 <div class="jumbotron mt-4">
 					<div class="input-group mb-3">
@@ -82,7 +82,7 @@
         let totalExpense=0;
 
         // set the heading element to total expense
-        headingEl.textContent = totalExpense;
+        headingEl.textContent = `Total : ${totalExpense}`;
 
         // allexpenses at one place
         const allexpenses = [];
