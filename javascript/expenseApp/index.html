@@ -85,7 +85,7 @@
         headingEl.textContent = `Total : ${totalExpense}`;
 
         // allexpenses at one place
-        const allexpenses = [];
+        let allexpenses = [];
 
         // on ButtonClick add input to total Expense
         function addExpenseTotal() {
@@ -108,8 +108,8 @@
             //put the object in the array
             allexpenses.push(expenseItem);
  
-            console.clear();
-            console.table(allexpenses);
+            // console.clear();
+            // console.table(allexpenses);
             // add to total expense
             totalExpense  += expense;
             const sometext = `Total : ${totalExpense}`; //templating
@@ -129,17 +129,7 @@
             // <div>${data2Text}</div>
             // `
 
-            const allexpensesHTML = allexpenses.map(expense => createList(expense)).join("");
-            console.log(allexpensesHTML);
-            expenseTableEl.innerHTML = allexpensesHTML;
-
-        }
-
-        function removeExpenseTotal() {
-            allexpenses.pop();
-            const allexpensesHTML = allexpenses.map(expense => createList(expense)).join("");
-            console.log(allexpensesHTML);
-            expenseTableEl.innerHTML = allexpensesHTML;
+            renderList(allexpenses);
 
         }
          
@@ -157,6 +147,24 @@
                 day: 'numeric'
             })
         }
+        
+        function deleteItem(dateValue , amount) {
+            console.log("hihih");
+            const filterArr = allexpenses
+                                .filter(expense => expense.moment.valueOf() !== dateValue );
+            
+            allexpenses = filterArr;
+            renderList(filterArr);
+            totalExpense -= amount;
+            headingEl.textContent = `Total : ${totalExpense}`;
+            
+        }
+
+        function renderList(arrOfList){
+            const allexpensesHTML = arrOfList.map(expense => createList(expense)).join("");
+            expenseTableEl.innerHTML = allexpensesHTML;
+        }
+
         // View Layer
         function createList({desc , amount , moment}){
             return `
@@ -169,7 +177,10 @@
 			        	<span class="px-5">
 			        		${amount} 
 			        	</span>
-			        	<button type="button" class="btn btn-outline-danger btn-sm">
+			        	<button 
+                            onclick="deleteItem(${moment.valueOf()} , ${amount})"
+                            type="button" 
+                            class="btn btn-outline-danger btn-sm">
 			        		<i class="fas fa-trash-alt"></i>
 			        	</button>
 			        </div>
